@@ -1,7 +1,7 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
-const ModalComponent = ({ title, show, handleClose, children, handleSave }) => {
+const ModalComponent = ({ title, show, handleClose, children, footerButtons = [] }) => {
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
@@ -9,12 +9,15 @@ const ModalComponent = ({ title, show, handleClose, children, handleSave }) => {
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleSave}>
-          Save changes
-        </Button>
+        {footerButtons.map((button, index) => (
+          <button
+            key={index}
+            className={`btn ${button.className}`}
+            onClick={button.onClick}
+          >
+            {button.label}
+          </button>
+        ))}
       </Modal.Footer>
     </Modal>
   );
