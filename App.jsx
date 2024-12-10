@@ -132,7 +132,8 @@ function App() {
           handleClose={() => setShowModal(false)}
           footerButtons={[
             {
-              label: "Save",
+              //label: "Save",
+              label: modalType === "add" ? "save": "Update",
               className: "btn-primary",
               onClick: handleSave,
             },
